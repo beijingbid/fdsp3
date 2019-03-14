@@ -125,6 +125,8 @@ type request struct {
 type request_imp struct {
 	Id          string
 	Banner      request_imp_banner
+	Video       request_imp_video
+	Native      request_imp_native
 	Instl       bool
 	Tagid       string
 	Bidfloor    int
@@ -142,6 +144,75 @@ type request_imp_banner_ext struct {
 	Ad_type        int
 	Tag_name       string
 }
+type request_imp_video struct {
+	Mimes          []string
+	Linearity      int
+	Minduration    int
+	Maxduration    int
+	Protocol       int
+	Protocols      []int
+	W              int
+	H              int
+	Startdelay     int
+	Sequence       int
+	Battr          []int
+	Minextended    int
+	Maxextended    int
+	Minbitrate     int
+	Maxbitrate     int
+	Boxingallowed  bool
+	Playbackmethod []int
+	Delivery       []int
+	Pos            int
+	Companionad    []int
+	Companionad_21 int
+	Api            []int
+	Companiontype  []int
+}
+
+type request_imp_native struct {
+	Request_native request_imp_native_request_native
+	Request        string
+	Ver            string
+	Api            []int
+	Battr          []int
+}
+
+type request_imp_native_request_native struct {
+	Ver      string
+	Layout   int
+	Adunit   int
+	Plcmtcnt int
+	Seq      int
+	Assets   []request_imp_native_request_native_asset
+}
+type request_imp_native_request_native_asset struct {
+	Id       int
+	Required bool
+	Title    request_imp_native_request_native_asset_title
+	Img      request_imp_native_request_native_asset_image
+	Video    request_imp_video
+	Data     request_imp_native_request_native_asset_data
+}
+
+type request_imp_native_request_native_asset_title struct {
+	Len int
+}
+type request_imp_native_request_native_asset_image struct {
+	Type  int
+	W     int
+	H     int
+	Wmin  int
+	Hmin  int
+	Wmax  int
+	Hmax  int
+	Mimes []string
+}
+type request_imp_native_request_native_asset_data struct {
+	Type int
+	Len  int
+}
+
 type request_app struct {
 	Id     string
 	Name   string
@@ -388,6 +459,8 @@ func GetAdJson(writer http.ResponseWriter, req *http.Request) {
 func searchAd(requestJson request) (adinfo adinfo, err error) {
 
 	// 筛选广告
+	//adType := 0
+	//if requestJson.Imp[0].
 
 	//
 
